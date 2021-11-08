@@ -26,6 +26,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.rujirakongsomran.jc_grids.ui.theme.GridBackground1
 import com.rujirakongsomran.jc_grids.ui.theme.GridBackground2
+import com.rujirakongsomran.jc_grids.ui.theme.GridBackground3
 import com.rujirakongsomran.jc_grids.ui.theme.JC_GridsTheme
 
 class MainActivity : ComponentActivity() {
@@ -45,7 +46,7 @@ class MainActivity : ComponentActivity() {
 fun ShowGrid() {
     val data = listOf("Item 1", "Item 2", "Item 3", "Item 4", "Item 5")
     LazyVerticalGrid(
-        cells = GridCells.Fixed(3),
+        cells = GridCells.Adaptive(180.dp),
         contentPadding = PaddingValues(8.dp)
     ) {
         items(data) { item ->
@@ -60,7 +61,7 @@ fun ShowGrid() {
                         Brush.linearGradient(
                             listOf(
                                 GridBackground1,
-                                GridBackground2
+                                GridBackground2,
                             )
                         )
                     )
