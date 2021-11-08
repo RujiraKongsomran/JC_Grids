@@ -9,11 +9,9 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.*
-import androidx.compose.material.Card
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
@@ -28,6 +26,7 @@ import com.rujirakongsomran.jc_grids.ui.theme.GridBackground1
 import com.rujirakongsomran.jc_grids.ui.theme.GridBackground2
 import com.rujirakongsomran.jc_grids.ui.theme.GridBackground3
 import com.rujirakongsomran.jc_grids.ui.theme.JC_GridsTheme
+import kotlin.random.Random
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -44,43 +43,47 @@ class MainActivity : ComponentActivity() {
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun ShowGrid() {
-    val data = listOf("Item 1", "Item 2", "Item 3", "Item 4", "Item 5")
+    val icon = listOf(
+        "\uD83C\uDF47",
+        "\uD83C\uDF48",
+        "\uD83C\uDF49",
+        "\uD83C\uDF4A",
+        "\uD83C\uDF4B",
+        "\uD83C\uDF4C",
+        "\uD83C\uDF4D",
+        "\uD83E\uDD6D",
+        "\uD83C\uDF4E",
+        "\uD83C\uDF4F",
+        "\uD83C\uDF50",
+        "\uD83C\uDF51",
+        "\uD83C\uDF52",
+        "\uD83C\uDF53",
+        "\uD83E\uDD5D",
+    )
     LazyVerticalGrid(
-        cells = GridCells.Adaptive(180.dp),
+        cells = GridCells.Fixed(3),
         contentPadding = PaddingValues(8.dp)
     ) {
-        items(data) { item ->
+        items(icon) { item ->
             Card(
                 modifier = Modifier.padding(4.dp),
-                backgroundColor = Color.Transparent
-
+                backgroundColor = Color(
+                    red = Random.nextInt(0, 255),
+                    green = Random.nextInt(0, 255),
+                    blue = Random.nextInt(0, 255)
+                )
             )
             {
-                Box(
-                    modifier = Modifier.background(
-                        Brush.linearGradient(
-                            listOf(
-                                GridBackground1,
-                                GridBackground2,
-                            )
-                        )
-                    )
-                ) {
-                    Text(
-                        text = item,
-                        fontSize = 18.sp,
-                        textAlign = TextAlign.Center,
-                        modifier = Modifier.padding(24.dp),
-                        color = Color.White,
-                        fontWeight = FontWeight.Bold,
-                        fontFamily = FontFamily.Monospace
-                    )
-                }
+                Text(
+                    text = item,
+                    fontSize = 40.sp,
+                    textAlign = TextAlign.Center,
+                    modifier = Modifier.padding(20.dp),
+                )
             }
         }
     }
 }
-
 
 @Preview
 @Composable
